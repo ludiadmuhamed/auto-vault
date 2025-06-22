@@ -70,6 +70,7 @@ const UserProfile = ({ cardStyle, userData, isDarkMode }) => {
       </div>
     );
   };
+  
   return (
     <div style={{ ...cardStyle, marginBottom: '32px' }}>
       <div style={{
@@ -79,8 +80,14 @@ const UserProfile = ({ cardStyle, userData, isDarkMode }) => {
         justifyContent: 'space-between',
         gap: '24px'
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
-          <div style={{ position: 'relative' }}>
+        <div style={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          gap: '24px',
+          flex: 1,
+          minWidth: 0 // Allows flex items to shrink below their content size
+        }}>
+          <div style={{ position: 'relative', flexShrink: 0 }}>
             <img
               src={userData.avatar}
               alt="Profile"
@@ -108,8 +115,13 @@ const UserProfile = ({ cardStyle, userData, isDarkMode }) => {
             </div>
           </div>
 
-          <div>
-            <h2 style={{ fontSize: '28px', fontWeight: 'bold', margin: '0 0 4px 0' }}>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <h2 style={{ 
+              fontSize: '28px', 
+              fontWeight: 'bold', 
+              margin: '0 0 4px 0',
+              wordBreak: 'break-word'
+            }}>
               {userData.name}
             </h2>
             <p style={{
@@ -121,7 +133,11 @@ const UserProfile = ({ cardStyle, userData, isDarkMode }) => {
             </p>
 
             {/* XP Progress Bar */}
-            <div style={{ width: '250px' }}>
+            <div style={{ 
+              width: '100%',
+              maxWidth: '250px', // Maximum width on larger screens
+              minWidth: '200px'   // Minimum width to prevent too much shrinking
+            }}>
               <div style={{
                 display: 'flex',
                 justifyContent: 'space-between',
@@ -150,7 +166,12 @@ const UserProfile = ({ cardStyle, userData, isDarkMode }) => {
         </div>
 
         {/* Reward Points */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '32px' }}>
+        <div style={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          gap: '32px',
+          flexShrink: 0 // Prevents this section from shrinking
+        }}>
           <CircularProgress value={userData.rewardPoints} max={15000} />
           <div style={{ textAlign: 'right' }}>
             <p style={{
