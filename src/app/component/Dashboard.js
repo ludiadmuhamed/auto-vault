@@ -5,28 +5,12 @@ import { Gift, Car, Fuel, Shield } from 'lucide-react';
 import Header from './Header';
 import UserProfile from './UserProfile';
 import Benefits from './Benefits';
-import Highlights from './Highlights';
+import VehicleHighlights from './VehicleHighlights';
 
 const Dashboard = ({ isDarkMode, setIsDarkMode }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [userData, setUserData] = useState(null);
   const [benefits, setBenefits] = useState([]);
-
-  // Mock data loading
-  useEffect(() => {
-    const originalBackground = document.body.style.background;
-    const originalColor = document.body.style.color;
-
-    document.body.style.background = isDarkMode
-      ? 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)'
-      : 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)';
-    document.body.style.color = isDarkMode ? '#fff' : '#000';
-
-    return () => {
-      document.body.style.background = originalBackground;
-      document.body.style.color = originalColor;
-    };
-  }, [isDarkMode]);
 
   // Mock data loading
   useEffect(() => {
@@ -90,109 +74,31 @@ const Dashboard = ({ isDarkMode, setIsDarkMode }) => {
   }, []);
 
   const SkeletonCard = () => (
-    <div style={{
-      padding: '24px',
-      borderRadius: '16px',
-      backgroundColor: isDarkMode ? '#2a2a2a' : '#f5f5f5',
-      animation: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
-    }}>
-      <div style={{
-        height: '60px',
-        backgroundColor: isDarkMode ? '#404040' : '#e0e0e0',
-        borderRadius: '8px',
-        marginBottom: '16px'
-      }}></div>
-      <div style={{
-        height: '16px',
-        backgroundColor: isDarkMode ? '#404040' : '#e0e0e0',
-        borderRadius: '4px',
-        marginBottom: '8px'
-      }}></div>
-      <div style={{
-        height: '12px',
-        backgroundColor: isDarkMode ? '#404040' : '#e0e0e0',
-        borderRadius: '4px',
-        width: '70%'
-      }}></div>
+    <div className="p-6 rounded-lg bg-gray-100 dark:bg-gray-700 animate-pulse">
+      <div className="h-15 bg-gray-200 dark:bg-gray-600 rounded-lg mb-4"></div>
+      <div className="h-4 bg-gray-200 dark:bg-gray-600 rounded mb-2"></div>
+      <div className="h-3 bg-gray-200 dark:bg-gray-600 rounded w-3/4"></div>
     </div>
   );
 
   const SkeletonProfile = () => (
-    <div style={{
-      display: 'flex',
-      alignItems: 'center',
-      gap: '16px',
-      marginBottom: '32px',
-      animation: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
-    }}>
-      <div style={{
-        width: '64px',
-        height: '64px',
-        backgroundColor: isDarkMode ? '#404040' : '#e0e0e0',
-        borderRadius: '50%'
-      }}></div>
-      <div style={{ flex: 1 }}>
-        <div style={{
-          height: '16px',
-          backgroundColor: isDarkMode ? '#404040' : '#e0e0e0',
-          borderRadius: '4px',
-          marginBottom: '8px',
-          width: '150px'
-        }}></div>
-        <div style={{
-          height: '12px',
-          backgroundColor: isDarkMode ? '#404040' : '#e0e0e0',
-          borderRadius: '4px',
-          width: '100px'
-        }}></div>
+    <div className="flex items-center gap-4 mb-8 animate-pulse">
+      <div className="w-16 h-16 bg-gray-200 dark:bg-gray-600 rounded-full"></div>
+      <div className="flex-1">
+        <div className="h-4 bg-gray-200 dark:bg-gray-600 rounded mb-2 w-36"></div>
+        <div className="h-3 bg-gray-200 dark:bg-gray-600 rounded w-24"></div>
       </div>
     </div>
   );
 
-  const containerStyle = {
-    minHeight: '100vh',
-    color: isDarkMode ? '#fff' : '#000',
-    transition: 'all 0.3s ease',
-    padding: '32px 16px'
-  };
-
-  const cardStyle = {
-    backgroundColor: isDarkMode ? 'rgba(45, 45, 45, 0.8)' : 'rgba(255, 255, 255, 0.9)',
-    borderRadius: '20px',
-    padding: '32px',
-    border: `1px solid ${isDarkMode ? '#404040' : '#e0e0e0'}`,
-    backdropFilter: 'blur(10px)',
-    transition: 'all 0.3s ease'
-  };
-
   return (
-    <div style={containerStyle}>
-      <style jsx>{`
-        @keyframes pulse {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.5; }
-        }
-        
-        .benefit-card {
-          transition: all 0.3s ease;
-          cursor: pointer;
-        }
-        
-        .benefit-card:hover {
-          transform: translateY(-8px);
-          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-        
-        .cta-button {
-          transition: all 0.3s ease;
-        }
-        
-        .cta-button:hover {
-          transform: scale(1.05);
-        }
-      `}</style>
+    <div className={`min-h-screen transition-all duration-300 p-8 ${
+      isDarkMode 
+        ? 'bg-gray-900 text-white' 
+        : 'bg-gray-50 text-gray-900'
+    }`}>
 
-      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+      <div className="max-w-7xl mx-auto">
         {/* Header */}
         <Header isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
 
@@ -200,11 +106,7 @@ const Dashboard = ({ isDarkMode, setIsDarkMode }) => {
         {isLoading ? (
           <div>
             <SkeletonProfile />
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-              gap: '24px'
-            }}>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[...Array(4)].map((_, i) => (
                 <SkeletonCard key={i} />
               ))}
@@ -213,13 +115,13 @@ const Dashboard = ({ isDarkMode, setIsDarkMode }) => {
         ) : (
           <>
             {/* User Profile Section */}
-            <UserProfile cardStyle={cardStyle} userData={userData} isDarkMode={isDarkMode} />
+            <UserProfile userData={userData} isDarkMode={isDarkMode} />
 
             {/* Benefits Section */}
-            <Benefits cardStyle={cardStyle} benefits={benefits} isDarkMode={isDarkMode} />
+            <Benefits benefits={benefits} />
 
-            {/* Quick Stats */}
-            <Highlights cardStyle={cardStyle} isDarkMode={isDarkMode} />
+            {/* Vehicle Highlights */}
+            <VehicleHighlights />
           </>
         )}
       </div>

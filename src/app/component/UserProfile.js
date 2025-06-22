@@ -2,7 +2,7 @@
 
 import { Star, Trophy } from "lucide-react";
 
-const UserProfile = ({ cardStyle, userData, isDarkMode }) => {
+const UserProfile = ({ userData, isDarkMode }) => {
   const CircularProgress = ({ value, max, size = 120 }) => {
     const percentage = (value / max) * 100;
     const circumference = 2 * Math.PI * 45;
@@ -10,18 +10,11 @@ const UserProfile = ({ cardStyle, userData, isDarkMode }) => {
     const strokeDashoffset = circumference - (percentage / 100) * circumference;
 
     return (
-      <div style={{
-        position: 'relative',
-        width: size,
-        height: size,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}>
+      <div className="relative flex items-center justify-center" style={{ width: size, height: size }}>
         <svg
           width={size}
           height={size}
-          style={{ transform: 'rotate(-90deg)' }}
+          className="transform -rotate-90"
         >
           <circle
             cx={size / 2}
@@ -41,29 +34,14 @@ const UserProfile = ({ cardStyle, userData, isDarkMode }) => {
             strokeDasharray={strokeDasharray}
             strokeDashoffset={strokeDashoffset}
             strokeLinecap="round"
-            style={{
-              transition: 'stroke-dashoffset 1s ease-out'
-            }}
+            className="transition-all duration-1000 ease-out"
           />
         </svg>
-        <div style={{
-          position: 'absolute',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center'
-        }}>
-          <span style={{
-            fontSize: '24px',
-            fontWeight: 'bold',
-            color: isDarkMode ? '#fff' : '#000'
-          }}>
+        <div className="absolute flex flex-col items-center justify-center">
+          <span className="text-2xl font-bold text-gray-900 dark:text-white">
             {Math.round(percentage)}%
           </span>
-          <span style={{
-            fontSize: '12px',
-            color: isDarkMode ? '#999' : '#666'
-          }}>
+          <span className="text-xs text-gray-600 dark:text-gray-400">
             Complete
           </span>
         </div>
@@ -72,132 +50,57 @@ const UserProfile = ({ cardStyle, userData, isDarkMode }) => {
   };
   
   return (
-    <div style={{ ...cardStyle, marginBottom: '32px' }}>
-      <div style={{
-        display: 'flex',
-        flexDirection: window.innerWidth < 768 ? 'column' : 'row',
-        alignItems: window.innerWidth < 768 ? 'flex-start' : 'center',
-        justifyContent: 'space-between',
-        gap: '24px'
-      }}>
-        <div style={{ 
-          display: 'flex', 
-          alignItems: 'center', 
-          gap: '24px',
-          flex: 1,
-          minWidth: 0 // Allows flex items to shrink below their content size
-        }}>
-          <div style={{ position: 'relative', flexShrink: 0 }}>
+    <div className="mb-8 p-6 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm">
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div className="flex items-center gap-6 flex-1 min-w-0">
+          <div className="relative flex-shrink-0">
             <img
               src={userData.avatar}
               alt="Profile"
-              style={{
-                width: '80px',
-                height: '80px',
-                borderRadius: '50%',
-                objectFit: 'cover',
-                border: '4px solid #8B5CF6'
-              }}
+              className="w-20 h-20 rounded-full object-cover border-4 border-purple-500"
             />
-            <div style={{
-              position: 'absolute',
-              bottom: '-8px',
-              right: '-8px',
-              width: '32px',
-              height: '32px',
-              background: 'linear-gradient(135deg, #10B981 0%, #059669 100%)',
-              borderRadius: '50%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}>
-              <Star size={16} color="white" />
+            <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-full flex items-center justify-center">
+              <Star size={16} className="text-white" />
             </div>
           </div>
 
-          <div style={{ flex: 1, minWidth: 0 }}>
-            <h2 style={{ 
-              fontSize: '28px', 
-              fontWeight: 'bold', 
-              margin: '0 0 4px 0',
-              wordBreak: 'break-word'
-            }}>
+          <div className="flex-1 min-w-0">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-1 break-words">
               {userData.name}
             </h2>
-            <p style={{
-              color: '#8B5CF6',
-              fontWeight: '600',
-              margin: '0 0 12px 0'
-            }}>
+            <p className="text-purple-500 font-semibold mb-3">
               {userData.level}
             </p>
 
             {/* XP Progress Bar */}
-            <div style={{ 
-              width: '100%',
-              maxWidth: '250px', // Maximum width on larger screens
-              minWidth: '200px'   // Minimum width to prevent too much shrinking
-            }}>
-              <div style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                fontSize: '14px',
-                marginBottom: '8px'
-              }}>
+            <div className="w-full max-w-xs min-w-48">
+              <div className="flex justify-between text-sm text-gray-600 dark:text-gray-400 mb-2">
                 <span>Level Progress</span>
                 <span>{userData.xp}/{userData.maxXp} XP</span>
               </div>
-              <div style={{
-                width: '100%',
-                height: '12px',
-                backgroundColor: isDarkMode ? '#404040' : '#e0e0e0',
-                borderRadius: '6px',
-                overflow: 'hidden'
-              }}>
-                <div style={{
-                  height: '100%',
-                  background: 'linear-gradient(90deg, #8B5CF6 0%, #EC4899 100%)',
-                  width: `${(userData.xp / userData.maxXp) * 100}%`,
-                  transition: 'width 1s ease-out'
-                }}></div>
+              <div className="w-full h-3 bg-gray-200 dark:bg-gray-600 rounded-md overflow-hidden">
+                <div 
+                  className="h-full bg-gradient-to-r from-purple-500 to-pink-500 transition-all duration-1000 ease-out"
+                  style={{ width: `${(userData.xp / userData.maxXp) * 100}%` }}
+                ></div>
               </div>
             </div>
           </div>
         </div>
 
         {/* Reward Points */}
-        <div style={{ 
-          display: 'flex', 
-          alignItems: 'center', 
-          gap: '32px',
-          flexShrink: 0 // Prevents this section from shrinking
-        }}>
+        <div className="flex items-center gap-8 flex-shrink-0">
           <CircularProgress value={userData.rewardPoints} max={15000} />
-          <div style={{ textAlign: 'right' }}>
-            <p style={{
-              fontSize: '36px',
-              fontWeight: 'bold',
-              background: 'linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              margin: '0 0 4px 0'
-            }}>
+          <div className="text-right">
+            <p className="text-4xl font-bold bg-gradient-to-br from-purple-500 to-pink-500 bg-clip-text text-transparent mb-1">
               {userData.rewardPoints.toLocaleString()}
             </p>
-            <p style={{
-              fontSize: '14px',
-              color: isDarkMode ? '#999' : '#666',
-              margin: '0 0 8px 0'
-            }}>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
               Reward Points
             </p>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
-              <Trophy size={16} color="#FCD34D" style={{ marginRight: '4px' }} />
-              <span style={{
-                fontSize: '14px',
-                fontWeight: '600',
-                color: '#FCD34D'
-              }}>
+            <div className="flex items-center justify-end">
+              <Trophy size={16} className="text-yellow-400 mr-1" />
+              <span className="text-sm font-semibold text-yellow-400">
                 {userData.tier} Tier
               </span>
             </div>
@@ -205,7 +108,7 @@ const UserProfile = ({ cardStyle, userData, isDarkMode }) => {
         </div>
       </div>
     </div>
-  )
+  );
 };
 
 export default UserProfile;
