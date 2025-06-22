@@ -14,6 +14,22 @@ const Dashboard = ({ isDarkMode, setIsDarkMode }) => {
 
   // Mock data loading
   useEffect(() => {
+    const originalBackground = document.body.style.background;
+    const originalColor = document.body.style.color;
+
+    document.body.style.background = isDarkMode
+      ? 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)'
+      : 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)';
+    document.body.style.color = isDarkMode ? '#fff' : '#000';
+
+    return () => {
+      document.body.style.background = originalBackground;
+      document.body.style.color = originalColor;
+    };
+  }, [isDarkMode]);
+
+  // Mock data loading
+  useEffect(() => {
     const loadData = async () => {
       // Simulate API call delay
       await new Promise(resolve => setTimeout(resolve, 2000));
@@ -72,10 +88,6 @@ const Dashboard = ({ isDarkMode, setIsDarkMode }) => {
 
     loadData();
   }, []);
-
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-  };
 
   const SkeletonCard = () => (
     <div style={{
@@ -137,13 +149,8 @@ const Dashboard = ({ isDarkMode, setIsDarkMode }) => {
     </div>
   );
 
-
-
   const containerStyle = {
     minHeight: '100vh',
-    background: isDarkMode
-      ? 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)'
-      : 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
     color: isDarkMode ? '#fff' : '#000',
     transition: 'all 0.3s ease',
     padding: '32px 16px'
