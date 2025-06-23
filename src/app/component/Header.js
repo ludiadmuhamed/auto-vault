@@ -1,11 +1,6 @@
 import { Moon, Sparkles, Sun } from "lucide-react";
 
-const Header = ({ isDarkMode }) => {
-  const toggleDarkMode = () => {
-    document.documentElement.classList.toggle('dark');
-    localStorage.setItem("isDarkMode", !isDarkMode);
-  };
-
+const Header = ({ isDarkMode, toggleDarkMode }) => {
   return (
     <div className="flex justify-between items-center mb-8">
       <div className="flex items-center gap-4">
@@ -23,7 +18,7 @@ const Header = ({ isDarkMode }) => {
       >
         {isDarkMode ? (
           <Sun size={20} className="text-yellow-400" />
-        ) : (
+        ) : ( 
           <Moon size={20} className="text-gray-500" />
         )}
       </button>
