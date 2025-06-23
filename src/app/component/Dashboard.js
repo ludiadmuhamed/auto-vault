@@ -7,7 +7,7 @@ import UserProfile from './UserProfile';
 import Benefits from './Benefits';
 import VehicleHighlights from './VehicleHighlights';
 
-const Dashboard = ({ isDarkMode, setIsDarkMode }) => {
+const Dashboard = ({ isDarkMode }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [userData, setUserData] = useState(null);
   const [benefits, setBenefits] = useState([]);
@@ -92,15 +92,11 @@ const Dashboard = ({ isDarkMode, setIsDarkMode }) => {
   );
 
   return (
-    <div className={`min-h-screen transition-all duration-300 p-8 ${
-      isDarkMode 
-        ? 'bg-gray-900 text-white' 
-        : 'bg-gray-50 text-gray-900'
-    }`}>
+    <div className="min-h-screen transition-all duration-300 p-8 bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-white">
 
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <Header isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
+        <Header isDarkMode={isDarkMode}/>
 
         {/* Loading State */}
         {isLoading ? (

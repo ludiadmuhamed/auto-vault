@@ -1,9 +1,9 @@
 import { Moon, Sparkles, Sun } from "lucide-react";
 
-const Header = ({ isDarkMode, setIsDarkMode }) => {
+const Header = ({ isDarkMode }) => {
   const toggleDarkMode = () => {
     document.documentElement.classList.toggle('dark');
-    setIsDarkMode(!isDarkMode);
+    localStorage.setItem("isDarkMode", !isDarkMode);
   };
 
   return (

@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
 import Dashboard from "./component/Dashboard";
 
 const Home = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const isDarkMode = JSON.parse(localStorage.getItem("isDarkMode"))
 
-  return <Dashboard isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />;
+  return (
+    <Dashboard isDarkMode={isDarkMode} />
+  )
 };
 
 export default Home;
