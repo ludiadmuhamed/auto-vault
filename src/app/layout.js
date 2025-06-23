@@ -1,8 +1,8 @@
 import '../app/globals.css'
 
 export const metadata = {
-  title: 'Vehicle Management',
-  description: 'Modern vehicle management dashboard',
+  title: 'Auto Vault',
+  description: 'Your personal vault for vehicles – track every ride, refuel, and repair.',
 }
 
 export default function RootLayout({ children }) {

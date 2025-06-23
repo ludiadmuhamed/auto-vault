@@ -1,10 +1,10 @@
 "use client";
 
-import { Star, Zap, Trophy, Target } from "lucide-react";
+import { Zap, Trophy, Target } from "lucide-react";
 import { motion } from "framer-motion";
 
 const UserProfile = ({ userData, isDarkMode, isLoading = false }) => {
-  // Loading skeleton component
+  // Loading skeleton 
   const ProfileSkeleton = () => (
     <div className="mb-6 sm:mb-8 p-4 sm:p-6 rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-lg">
       <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 animate-pulse">
@@ -91,7 +91,7 @@ const UserProfile = ({ userData, isDarkMode, isLoading = false }) => {
       transition={{ duration: 0.6 }}
     >
       <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6">
-        {/* Avatar Section */}
+        {/* User Profile */}
         <motion.div 
           className="relative flex-shrink-0"
           whileHover={{ scale: 1.05 }}
@@ -121,9 +121,8 @@ const UserProfile = ({ userData, isDarkMode, isLoading = false }) => {
           </div>
         </motion.div>
 
-        {/* User Info & Progress Section */}
+        {/* User Info & Progress */}
         <div className="flex-1 text-center sm:text-left space-y-4 w-full min-w-0">
-          {/* Name and Level */}
           <div>
             <motion.h2 
               className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-2 break-words"
@@ -140,14 +139,12 @@ const UserProfile = ({ userData, isDarkMode, isLoading = false }) => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.3 }}
             >
-              {/* Level Badge */}
               <div className="px-3 py-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full shadow-md">
                 <span className="text-white font-semibold text-sm">
                   {userData.level}
                 </span>
               </div>
               
-              {/* Tier Badge */}
               <div className="flex items-center gap-1 px-3 py-1 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full shadow-md">
                 <Trophy size={14} className="text-white" />
                 <span className="text-white font-semibold text-sm">
@@ -155,7 +152,6 @@ const UserProfile = ({ userData, isDarkMode, isLoading = false }) => {
                 </span>
               </div>
               
-              {/* XP Badge */}
               <div className="px-3 py-1 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full shadow-md">
                 <span className="text-white font-semibold text-sm">
                   {userData.xp.toLocaleString()} XP
@@ -164,7 +160,6 @@ const UserProfile = ({ userData, isDarkMode, isLoading = false }) => {
             </motion.div>
           </div>
 
-          {/* Gamification Progress Bar */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -178,7 +173,7 @@ const UserProfile = ({ userData, isDarkMode, isLoading = false }) => {
             />
           </motion.div>
 
-          {/* Achievement Summary */}
+          {/* Achievement */}
           <motion.div 
             className="flex items-center justify-center sm:justify-start gap-4 pt-2"
             initial={{ opacity: 0, y: 10 }}

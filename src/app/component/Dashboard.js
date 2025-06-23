@@ -20,7 +20,7 @@ const Dashboard = ({ isDarkMode, toggleDarkMode }) => {
       await new Promise(resolve => setTimeout(resolve, 2000));
 
       setUserData({
-        name: "Arjun Kumar",
+        name: "James Rudiger",
         level: "Elite Member",
         xp: 8500,
         maxXp: 10000,
@@ -107,7 +107,6 @@ const Dashboard = ({ isDarkMode, toggleDarkMode }) => {
         <div className="h-10 sm:h-12 bg-gray-200 dark:bg-gray-600 rounded-xl"></div>
       </div>
 
-      {/* Shimmer effect */}
       <div className="absolute inset-0 -translate-x-full animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
     </motion.div>
   );

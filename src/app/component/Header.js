@@ -8,7 +8,7 @@ const Header = ({ isDarkMode, toggleDarkMode }) => {
           <Sparkles size={20} className="text-white" />
         </div>
         <h1 className="text-3xl font-bold bg-gradient-to-br from-purple-500 to-pink-500 bg-clip-text text-transparent">
-          CRED Garage
+          Auto Vault
         </h1>
       </div>
 
