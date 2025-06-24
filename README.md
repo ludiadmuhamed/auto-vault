@@ -8,8 +8,8 @@ A modern, responsive dashboard UI inspired by **CRED Garage**, built with **Next
 ![Auto Vault Preview](public/dashboard-preview2.png)
 ![Auto Vault Preview](public/dashboard-preview3.png)
 
-**🎬 Video Walkthrough**: [Watch on Loom](YOUR_LOOM_LINK_HERE) 📹  
-**🌐 Live Demo**: [Visit on Vercel](https://auto-vault-kz3t4a0r1-ludiadmuhameds-projects.vercel.app/) 🚀
+**🎬 Video Walkthrough**: [Watch on Loom](https://www.loom.com/share/af2370b63fd244589e21b672770aaa1b) 📹  
+**🌐 Live Demo**: [Visit on Vercel](https://auto-vault-sigma.vercel.app/) 🚀
 
 ---
 
